@@ -39,7 +39,7 @@ public class OneDriveServiceImpl extends AbstractOneDriveServiceBase implements 
     @Value("${zfile.onedrive.scope}")
     protected String scope;
 
-    private  String siteId;
+    private  String siteId="";
     @Override
     public void init(Integer driveId) {
         this.driveId = driveId;
