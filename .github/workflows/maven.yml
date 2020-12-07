@@ -26,5 +26,5 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@master
       with:
-          name: zfile-artifacts.war
+          name: zfile-artifacts
           path: /home/runner/work/zfile/zfile/target/zfile-2.8.1.war
