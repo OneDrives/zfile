@@ -39,6 +39,7 @@ public class OneDriveServiceImpl extends AbstractOneDriveServiceBase implements 
     @Value("${zfile.onedrive.scope}")
     protected String scope;
 
+    private  String siteId;
     @Override
     public void init(Integer driveId) {
         this.driveId = driveId;
@@ -47,6 +48,7 @@ public class OneDriveServiceImpl extends AbstractOneDriveServiceBase implements 
         String accessToken = stringStorageConfigMap.get(StorageConfigConstant.ACCESS_TOKEN_KEY).getValue();
         String refreshToken = stringStorageConfigMap.get(StorageConfigConstant.REFRESH_TOKEN_KEY).getValue();
         super.basePath = stringStorageConfigMap.get(StorageConfigConstant.BASE_PATH).getValue();
+        this.siteId = stringStorageConfigMap.get(StorageConfigConstant.SITE_ID_KEY).getValue();
 
         if (StringUtils.isEmpty(accessToken) || StringUtils.isEmpty(refreshToken)) {
             log.debug("初始化存储策略 [{}] 失败: 参数不完整", getStorageTypeEnum().getDescription());
@@ -65,7 +67,12 @@ public class OneDriveServiceImpl extends AbstractOneDriveServiceBase implements 
 
     @Override
     public StorageTypeEnum getStorageTypeEnum() {
-        return StorageTypeEnum.ONE_DRIVE;
+        return StorageTypeEnum.SHARE_POINT;
+    }
+
+    @Override
+    public String getSharePointSiteId() {
+        return this.siteId;
     }
 
     @Override

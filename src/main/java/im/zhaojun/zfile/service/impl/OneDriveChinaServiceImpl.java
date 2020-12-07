@@ -27,18 +27,19 @@ public class OneDriveChinaServiceImpl extends AbstractOneDriveServiceBase implem
     @Resource
     private StorageConfigService storageConfigService;
 
-    @Value("${zfile.onedrive-china.clientId}")
-    private String clientId;
+    @Value("${zfile.onedrive.clientId}")
+    protected String clientId;
 
-    @Value("${zfile.onedrive-china.redirectUri}")
-    private String redirectUri;
+    @Value("${zfile.onedrive.redirectUri}")
+    protected String redirectUri;
 
-    @Value("${zfile.onedrive-china.clientSecret}")
-    private String clientSecret;
+    @Value("${zfile.onedrive.clientSecret}")
+    protected String clientSecret;
 
-    @Value("${zfile.onedrive-china.scope}")
-    private String scope;
+    @Value("${zfile.onedrive.scope}")
+    protected String scope;
 
+    private  String siteId;
     @Override
     public void init(Integer driveId) {
         this.driveId = driveId;
@@ -47,6 +48,7 @@ public class OneDriveChinaServiceImpl extends AbstractOneDriveServiceBase implem
         String accessToken = stringStorageConfigMap.get(StorageConfigConstant.ACCESS_TOKEN_KEY).getValue();
         String refreshToken = stringStorageConfigMap.get(StorageConfigConstant.REFRESH_TOKEN_KEY).getValue();
         super.basePath = stringStorageConfigMap.get(StorageConfigConstant.BASE_PATH).getValue();
+        this.siteId = stringStorageConfigMap.get(StorageConfigConstant.SITE_ID_KEY).getValue();
 
         if (StringUtils.isEmpty(accessToken) || StringUtils.isEmpty(refreshToken)) {
             log.debug("初始化存储策略 [{}] 失败: 参数不完整", getStorageTypeEnum().getDescription());
@@ -65,7 +67,12 @@ public class OneDriveChinaServiceImpl extends AbstractOneDriveServiceBase implem
 
     @Override
     public StorageTypeEnum getStorageTypeEnum() {
-        return StorageTypeEnum.ONE_DRIVE_CHINA;
+        return StorageTypeEnum.SHARE_POINT_CHINA;
+    }
+
+    @Override
+    public String getSharePointSiteId() {
+        return this.siteId;
     }
 
     @Override

@@ -35,13 +35,13 @@ import java.util.List;
 @Slf4j
 public abstract class AbstractOneDriveServiceBase extends AbstractBaseFileService {
 
-    protected static final String DRIVER_INFO_URL = "https://{graphEndPoint}/v1.0/me/drives";
+    protected static final String DRIVER_INFO_URL = "https://{graphEndPoint}/v1.0/{sharePointSiteId}/drives";
 
-    protected static final String DRIVER_ROOT_URL = "https://{graphEndPoint}/v1.0/sites/mqs.sharepoint.cn,3498193d-437c-41f5-b931-2a3849e638fc,04ae7ac3-7128-4c77-a41a-3bad73d11bfc/drive/root/children";
+    protected static final String DRIVER_ROOT_URL = "https://{graphEndPoint}/v1.0/{sharePointSiteId}/drive/root/children";
 
-    protected static final String DRIVER_ITEMS_URL = "https://{graphEndPoint}/v1.0/sites/mqs.sharepoint.cn,3498193d-437c-41f5-b931-2a3849e638fc,04ae7ac3-7128-4c77-a41a-3bad73d11bfc/drive/root:{path}:/children";
+    protected static final String DRIVER_ITEMS_URL = "https://{graphEndPoint}/v1.0/{sharePointSiteId}/drive/root:{path}:/children";
 
-    protected static final String DRIVER_ITEM_URL = "https://{graphEndPoint}/v1.0/sites/mqs.sharepoint.cn,3498193d-437c-41f5-b931-2a3849e638fc,04ae7ac3-7128-4c77-a41a-3bad73d11bfc/drive/root:{path}";
+    protected static final String DRIVER_ITEM_URL = "https://{graphEndPoint}/v1.0/{sharePointSiteId}/drive/root:{path}";
 
     protected static final String AUTHENTICATE_URL = "https://{authenticateEndPoint}/common/oauth2/v2.0/token";
 
@@ -133,11 +133,11 @@ public abstract class AbstractOneDriveServiceBase extends AbstractBaseFileServic
             HttpEntity<Object> entity = new HttpEntity<>(headers);
 
             try {
-                root = oneDriveRestTemplate.exchange(requestUrl, HttpMethod.GET, entity, JSONObject.class, getGraphEndPoint(), fullPath).getBody();
+                root = oneDriveRestTemplate.exchange(requestUrl, HttpMethod.GET, entity, JSONObject.class, getGraphEndPoint(),getSharePointSiteId(), fullPath).getBody();
             } catch (HttpClientErrorException e) {
                 log.debug("调用 OneDrive 时出现了网络异常, 已尝试重新刷新 token 后再试.", e);
                 refreshOneDriveToken();
-                root = oneDriveRestTemplate.exchange(requestUrl, HttpMethod.GET, entity, JSONObject.class, getGraphEndPoint(), fullPath).getBody();
+                root = oneDriveRestTemplate.exchange(requestUrl, HttpMethod.GET, entity, JSONObject.class, getGraphEndPoint(),getSharePointSiteId(), fullPath).getBody();
             }
 
             if (root == null) {
@@ -204,6 +204,12 @@ public abstract class AbstractOneDriveServiceBase extends AbstractBaseFileServic
 
 
     /**
+     * 获取 SharePoint  SiteId
+     * @return
+     */
+    public abstract String getSharePointSiteId();
+
+    /**
      * 获取 GraphEndPoint, 对于不同版本的 OneDrive, 此地址会不同.
      * @return          Graph 连接点
      */
@@ -263,6 +269,7 @@ public abstract class AbstractOneDriveServiceBase extends AbstractBaseFileServic
             add(new StorageConfig("accessToken", "访问令牌"));
             add(new StorageConfig("refreshToken", "刷新令牌"));
             add(new StorageConfig("basePath", "基路径"));
+            add(new StorageConfig("siteId", "siteId"));
         }};
     }
 
