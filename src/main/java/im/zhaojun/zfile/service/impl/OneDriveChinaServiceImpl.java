@@ -39,7 +39,7 @@ public class OneDriveChinaServiceImpl extends AbstractOneDriveServiceBase implem
     @Value("${zfile.onedrive-china.scope}")
     private String scope;
 
-    private  String siteId="";
+    private  String siteId;
     @Override
     public void init(Integer driveId) {
         this.driveId = driveId;
@@ -72,7 +72,7 @@ public class OneDriveChinaServiceImpl extends AbstractOneDriveServiceBase implem
 
     @Override
     public String getSharePointSiteId() {
-        if(this.siteId.length()==0)
+        if(this.siteId==null||this.siteId.length()==0)
             return "me";
         else
             return "sites/"+this.siteId;
