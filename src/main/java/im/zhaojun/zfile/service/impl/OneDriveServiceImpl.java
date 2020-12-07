@@ -73,10 +73,9 @@ public class OneDriveServiceImpl extends AbstractOneDriveServiceBase implements 
     @Override
     public String getSharePointSiteId() {
         if(this.siteId.length()==0)
-            this.siteId="me";
+            return "me";
         else
-            this.siteId="sites/"+this.siteId;
-        return this.siteId;
+            return "sites/"+this.siteId;
     }
 
     @Override
