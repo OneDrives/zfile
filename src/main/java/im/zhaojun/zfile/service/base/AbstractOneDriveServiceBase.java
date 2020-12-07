@@ -180,7 +180,7 @@ public abstract class AbstractOneDriveServiceBase extends AbstractBaseFileServic
         headers.set("driveId", driveId.toString());
         HttpEntity<Object> entity = new HttpEntity<>(headers);
 
-        JSONObject fileItem = oneDriveRestTemplate.exchange(DRIVER_ITEM_URL, HttpMethod.GET, entity, JSONObject.class, getGraphEndPoint(), fullPath).getBody();
+        JSONObject fileItem = oneDriveRestTemplate.exchange(DRIVER_ITEM_URL, HttpMethod.GET, entity, JSONObject.class, getGraphEndPoint(),getSharePointSiteId(), fullPath).getBody();
 
         if (fileItem == null) {
             return null;
