@@ -269,7 +269,7 @@ public abstract class AbstractOneDriveServiceBase extends AbstractBaseFileServic
             add(new StorageConfig("accessToken", "访问令牌"));
             add(new StorageConfig("refreshToken", "刷新令牌"));
             add(new StorageConfig("basePath", "基路径"));
-            add(new StorageConfig("siteId", "siteId"));
+            add(new StorageConfig("siteId", "SiteId(默认为Onedrive,请留空)"));
         }};
     }
 
