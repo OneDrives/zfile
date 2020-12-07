@@ -27,17 +27,17 @@ public class OneDriveChinaServiceImpl extends AbstractOneDriveServiceBase implem
     @Resource
     private StorageConfigService storageConfigService;
 
-    @Value("${zfile.onedrive.clientId}")
-    protected String clientId;
+    @Value("${zfile.onedrive-china.clientId}")
+    private String clientId;
 
-    @Value("${zfile.onedrive.redirectUri}")
-    protected String redirectUri;
+    @Value("${zfile.onedrive-china.redirectUri}")
+    private String redirectUri;
 
-    @Value("${zfile.onedrive.clientSecret}")
-    protected String clientSecret;
+    @Value("${zfile.onedrive-china.clientSecret}")
+    private String clientSecret;
 
-    @Value("${zfile.onedrive.scope}")
-    protected String scope;
+    @Value("${zfile.onedrive-china.scope}")
+    private String scope;
 
     private  String siteId;
     @Override
@@ -67,7 +67,7 @@ public class OneDriveChinaServiceImpl extends AbstractOneDriveServiceBase implem
 
     @Override
     public StorageTypeEnum getStorageTypeEnum() {
-        return StorageTypeEnum.SHARE_POINT_CHINA;
+        return StorageTypeEnum.ONE_DRIVE_CHINA;
     }
 
     @Override

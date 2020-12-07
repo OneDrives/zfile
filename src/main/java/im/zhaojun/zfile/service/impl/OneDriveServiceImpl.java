@@ -67,7 +67,7 @@ public class OneDriveServiceImpl extends AbstractOneDriveServiceBase implements 
 
     @Override
     public StorageTypeEnum getStorageTypeEnum() {
-        return StorageTypeEnum.SHARE_POINT;
+        return StorageTypeEnum.ONE_DRIVE;
     }
 
     @Override
