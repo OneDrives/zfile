@@ -37,11 +37,11 @@ public abstract class AbstractOneDriveServiceBase extends AbstractBaseFileServic
 
     protected static final String DRIVER_INFO_URL = "https://{graphEndPoint}/v1.0/me/drives";
 
-    protected static final String DRIVER_ROOT_URL = "https://{graphEndPoint}/v1.0/me/drive/root/children";
+    protected static final String DRIVER_ROOT_URL = "https://{graphEndPoint}/v1.0/sites/mqs.sharepoint.cn,3498193d-437c-41f5-b931-2a3849e638fc,04ae7ac3-7128-4c77-a41a-3bad73d11bfc/drive/root/children";
 
-    protected static final String DRIVER_ITEMS_URL = "https://{graphEndPoint}/v1.0/me/drive/root:{path}:/children";
+    protected static final String DRIVER_ITEMS_URL = "https://{graphEndPoint}/v1.0/sites/mqs.sharepoint.cn,3498193d-437c-41f5-b931-2a3849e638fc,04ae7ac3-7128-4c77-a41a-3bad73d11bfc/drive/root:{path}:/children";
 
-    protected static final String DRIVER_ITEM_URL = "https://{graphEndPoint}/v1.0/me/drive/root:{path}";
+    protected static final String DRIVER_ITEM_URL = "https://{graphEndPoint}/v1.0/sites/mqs.sharepoint.cn,3498193d-437c-41f5-b931-2a3849e638fc,04ae7ac3-7128-4c77-a41a-3bad73d11bfc/drive/root:{path}";
 
     protected static final String AUTHENTICATE_URL = "https://{authenticateEndPoint}/common/oauth2/v2.0/token";
 
